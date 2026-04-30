@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Invitation</title>
+    <title>Special Invitation</title>
 
     <style>
         body {
@@ -22,14 +22,17 @@
             display: block;
         }
 
+        /* 💌 Envelope Styling */
         #envelope {
             width: 200px;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: all 0.4s ease;
+            filter: brightness(1);
         }
 
         #envelope:hover {
-            transform: scale(1.1);
+            transform: scale(1.2);
+            filter: brightness(1.5) drop-shadow(0 0 20px hotpink);
         }
 
         button {
@@ -44,7 +47,15 @@
         }
 
         h1 {
-            font-size: 2.5em;
+            font-size: 2.2em;
+            color: #ff79c6;
+        }
+
+        .invite-text {
+            max-width: 600px;
+            margin: auto;
+            line-height: 1.6;
+            font-size: 1.1em;
         }
     </style>
 </head>
@@ -54,24 +65,42 @@
 <!-- SCREEN 1 -->
 <div id="screen1" class="screen active">
     <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" id="envelope">
-    <p>Click to open your invite</p>
+    <p>Something special just arrived 💕</p>
 </div>
 
 <!-- SCREEN 2 -->
 <div id="screen2" class="screen">
-    <h2>Do you want to open the invitation?</h2>
+    <h2>Do you want to open your invitation?</h2>
     <button onclick="answer(true)">Yes</button>
     <button id="noBtn1">No</button>
 </div>
 
 <!-- SCREEN 3 -->
 <div id="screen3" class="screen">
-    <h1>🎉 You're Invited! 🎉</h1>
-    <p>Date: 10 May</p>
-    <p>Location: Durban</p>
-    <p>Will you attend?</p>
+    <h1>💌 Dear Fi</h1>
 
-    <button onclick="finalAnswer('yes')">Yes</button>
+    <div class="invite-text">
+        <p>
+            You are cordially invited to a <strong>long distance date night</strong> 💕
+        </p>
+
+        <p>
+            A romantic movie night, to a movie of your choice,  
+            over-the-phone cuddles and some personal alone time.
+        </p>
+
+        <p><strong>02/05/2026</strong></p>
+
+        <p>
+            Your presence would truly be appreciated 💖
+        </p>
+    </div>
+
+    <br>
+
+    <p>Will you accept this invitation?</p>
+
+    <button onclick="finalAnswer('yes')">Yes 💕</button>
     <button id="noBtn2">No</button>
 
     <p id="response"></p>
@@ -101,9 +130,9 @@
         const response = document.getElementById("response");
 
         if (choice === "yes") {
-            response.innerText = "🔥 Let's go! See you there!";
+            response.innerText = "💖 I knew you'd say yes... see you soon.";
         } else {
-            response.innerText = "😢 We'll miss you!";
+            response.innerText = "😢 That’s okay... but I’ll still be thinking of you.";
         }
     }
 
@@ -123,7 +152,6 @@
 
     noBtn1.addEventListener("mouseover", () => moveButton(noBtn1));
     noBtn2.addEventListener("mouseover", () => moveButton(noBtn2));
-
 </script>
 
 </body>
