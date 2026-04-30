@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invitation</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background: #121212;
+            color: white;
+            overflow: hidden;
+        }
+
+        .screen {
+            display: none;
+            margin-top: 100px;
+        }
+
+        .active {
+            display: block;
+        }
+
+        #envelope {
+            width: 200px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        #envelope:hover {
+            transform: scale(1.1);
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            background: #ff4081;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5em;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- SCREEN 1 -->
+<div id="screen1" class="screen active">
+    <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" id="envelope">
+    <p>Click to open your invite</p>
+</div>
+
+<!-- SCREEN 2 -->
+<div id="screen2" class="screen">
+    <h2>Do you want to open the invitation?</h2>
+    <button onclick="answer(true)">Yes</button>
+    <button id="noBtn1">No</button>
+</div>
+
+<!-- SCREEN 3 -->
+<div id="screen3" class="screen">
+    <h1>🎉 You're Invited! 🎉</h1>
+    <p>Date: 10 May</p>
+    <p>Location: Durban</p>
+    <p>Will you attend?</p>
+
+    <button onclick="finalAnswer('yes')">Yes</button>
+    <button id="noBtn2">No</button>
+
+    <p id="response"></p>
+</div>
+
+<script>
+    const s1 = document.getElementById("screen1");
+    const s2 = document.getElementById("screen2");
+    const s3 = document.getElementById("screen3");
+
+    // Envelope click
+    document.getElementById("envelope").onclick = () => {
+        s1.classList.remove("active");
+        s2.classList.add("active");
+    };
+
+    // Question logic
+    function answer(val) {
+        if (val) {
+            s2.classList.remove("active");
+            s3.classList.add("active");
+        }
+    }
+
+    // Final answer
+    function finalAnswer(choice) {
+        const response = document.getElementById("response");
+
+        if (choice === "yes") {
+            response.innerText = "🔥 Let's go! See you there!";
+        } else {
+            response.innerText = "😢 We'll miss you!";
+        }
+    }
+
+    // 🎮 Move button randomly
+    function moveButton(btn) {
+        const x = Math.random() * (window.innerWidth - 120);
+        const y = Math.random() * (window.innerHeight - 60);
+
+        btn.style.position = "absolute";
+        btn.style.left = x + "px";
+        btn.style.top = y + "px";
+    }
+
+    // Attach dodge effect
+    const noBtn1 = document.getElementById("noBtn1");
+    const noBtn2 = document.getElementById("noBtn2");
+
+    noBtn1.addEventListener("mouseover", () => moveButton(noBtn1));
+    noBtn2.addEventListener("mouseover", () => moveButton(noBtn2));
+
+</script>
+
+</body>
+</html>
